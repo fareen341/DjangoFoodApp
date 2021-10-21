@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock title %}
+
+{% block body %}  
+<h1 class="text-center">Mycart</h1>
+<form method="POST"> <!--action"/placeorder/" method="POST"-->
+{% csrf_token %}
+
+<table>
+    <tr>
+        <th>Food</th>
+        <th>price</th>
+        <th>Action</th>
+        
+    </tr>
+    <tbody>
+        {% for cart in items %}
+        <tr>
+            <td><img src="{{cart.foodobj.image.url}}" height="200px" width="200px">
+            <label>{{cart.foodobj.name}}</label></td>
+            <td>{{cart.foodobj.price}}</td>
+            <td><input type="number" class="quantity" id="{{cart.id}}" value="{{cart.qnt}}"></td>
+            <th id="cart{{cart.id}}">{{cart.price}}</th>
+            <th><a href="/deletecart/{{cart.id}}">Delete</th>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+        <button>Total Amount</button>
+        <input id="totalamount" name="totalamount" type="text" value="0">
+        <input type="submit" value="place order">
+     
+</form>
+{% endblock body %}
+

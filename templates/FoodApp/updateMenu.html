@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Update Menu{% endblock title %}
+
+{% block body %}  
+<div class="container my-5">
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        Name:<input type="text" name="name" value={{food.name}}><br><br>
+        price<input type="text" name="price" value={{food.price}}><br><br>
+        quantity:<input type="text" name="quantity" value={{food.quantity}}><br><br>
+        type:<input type="text" name="type" value={{food.type}}><br><br>
+        category:<input type="text" name="category" value={{food.category}}><br><br>
+        image:<input type="text" name="image" value={{food.image}}><br><br>
+        <input type="submit" value="update" class="btn btn-success">
+    </form>
+</div>
+{% endblock body %}
+

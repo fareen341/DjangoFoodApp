@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% block title %}Add  Food{% endblock title %}
+
+{% block body %}  
+<div class="container my-5">
+    <form method="POST" action="/editprofile/">
+    {% csrf_token %}
+<p><label for="id_username">Username:</label> <input type="text" name="username" maxlength="150" required id="id_username" value="{{user.user.username}}"> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></p>
+<p><label for="id_first_name">First name:</label> <input type="text" name="first_name" maxlength="30" id="id_first_name" value="{{user.user.first_name}}"></p>
+<p><label for="id_last_name">Last name:</label> <input type="text" name="last_name" maxlength="150" id="id_last_name" value="{{user.user.last_name}}"></p>
+<p><label for="id_last_name">Password:</label> <input type="text" name="password" maxlength="150" id="id_last_name" value="{{user.user.password}}"></p>
+<p><label for="id_email">Email address:</label> <input type="email" name="email" maxlength="254" id="id_email" value="{{user.user.email}}"></p>
+<p><label for="id_location">Location:</label> <input type="text" name="location" maxlength="30" required id="id_location" value="{{user.location}}"></p>
+<p><label for="id_contact">Contact:</label> <input type="text" name="contact" maxlength="10" required id="id_contact" value="{{user.contact}}"></p>
+<p><label for="id_role_0">Role:</label> <ul id="id_role"></p>
+
+ <select name="role">
+    {% if role == 'customer' %}
+        <option>{{role}}</option>
+        <option>Admin</option>
+    {% else %}
+        <option>{{role}}</option>
+        <option>customer</option>
+    {% endif %} 
+</select>  
+        
+    <input type="submit" value="update">
+    </form>
+
+    
+</div>
+{% endblock body %}
